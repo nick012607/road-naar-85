@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Road naar 85</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body data-person="nick">
+
+<div id="nav-slot"></div>
+
+<header class="masthead">
+  <h1><span id="who">–</span> <span>— eigen pagina</span></h1>
+  <div class="meta">
+    <div><span class="lab">Opdracht</span><b id="direction">–</b></div>
+  </div>
+</header>
+
+<div class="banner" id="banner" hidden>
+  Nog niet aan Supabase gekoppeld. Vul <span class="mono">assets/config.js</span> in, anders verdwijnt je invoer bij het verversen van de pagina.
+</div>
+
+<section class="card">
+  <h2>Invoer <em>alleen het gewicht is verplicht</em></h2>
+
+  <div class="fields">
+    <div>
+      <label for="date">Datum</label>
+      <input type="date" id="date">
+    </div>
+    <div>
+      <label for="kg"><b>Gewicht (kg) — verplicht</b></label>
+      <input type="number" id="kg" class="required" step="0.1" min="40" max="180"
+             inputmode="decimal" placeholder="93,5" required>
+    </div>
+  </div>
+
+  <details>
+    <summary>Optioneel invullen</summary>
+
+    <div class="fields">
+      <div>
+        <label for="kcal">Calorieën</label>
+        <input type="number" id="kcal" step="10" min="0" max="9000" inputmode="numeric" placeholder="2500">
+      </div>
+      <div>
+        <label for="protein">Eiwit (g)</label>
+        <input type="number" id="protein" step="1" min="0" max="500" inputmode="numeric" placeholder="180">
+      </div>
+    </div>
+
+    <div>
+      <label>Training vandaag</label>
+      <div class="chips" id="chips"></div>
+    </div>
+
+    <div class="fields">
+      <div>
+        <label for="sleep">Slaap (uren)</label>
+        <input type="number" id="sleep" step="0.5" min="0" max="16" inputmode="decimal" placeholder="7,5">
+      </div>
+      <div></div>
+    </div>
+
+    <div>
+      <label for="note">Notitie</label>
+      <textarea id="note" placeholder="Zwaar getild, slecht geslapen, uit eten geweest…"></textarea>
+    </div>
+  </details>
+
+  <button class="submit" id="save">Dag opslaan</button>
+  <p class="msg" id="status"></p>
+</section>
+
+<section class="card">
+  <h2>Stand <em>7-daags gemiddelde</em></h2>
+  <div class="pair">
+    <div class="stat">
+      <p class="lab">Laatste weging</p>
+      <p class="n" id="now">–<u>kg</u></p>
+      <p id="now-date">–</p>
+    </div>
+    <div class="stat">
+      <p class="lab">Verwacht op 85,0</p>
+      <p class="n" id="eta" style="font-size:19px">–</p>
+      <p>op het huidige tempo</p>
+    </div>
+  </div>
+  <div class="pair" style="margin-top:16px">
+    <div class="stat">
+      <p class="lab">Gemiddelde</p>
+      <p class="n" id="avg" style="font-size:19px">–</p>
+      <p>gedempt over 7 dagen</p>
+    </div>
+    <div class="stat">
+      <p class="lab">Tempo per week</p>
+      <p class="n" id="rate" style="font-size:19px">–</p>
+      <p>helling over 21 dagen</p>
+    </div>
+  </div>
+  <p class="note" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)">
+    Je weegt jezelf het best elke ochtend, na het toilet en vóór het ontbijt. Een verschil van
+    een kilo tussen twee dagen is water en darminhoud, geen vet. Alleen het gemiddelde telt.
+  </p>
+</section>
+
+<section class="card">
+  <h2>Verloop <em>eigen trend en projectie</em></h2>
+  <svg id="chart" class="chart" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet"
+       role="img" aria-label="Eigen gewichtsverloop richting 85 kilo"></svg>
+  <div class="legend">
+    <span style="color:var(--accent)"><i></i>7-daags gemiddelde</span>
+    <span style="color:var(--faint)"><i class="dash"></i>Projectie</span>
+    <span style="color:var(--ink)"><i></i>Streefgewicht 85,0</span>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Dagdoel</h2>
+  <div class="pair">
+    <div class="stat">
+      <p class="lab">Energie</p>
+      <p class="n" id="t-kcal">–<u>kcal</u></p>
+      <p id="t-kcal-sub">–</p>
+    </div>
+    <div class="stat">
+      <p class="lab">Eiwit</p>
+      <p class="n" id="t-prot">–<u>g</u></p>
+      <p id="t-prot-sub">–</p>
+    </div>
+  </div>
+
+  <div class="meter">
+    <p class="top"><span>Energie vandaag</span><b id="m-kcal">–</b></p>
+    <p class="bar"><i id="b-kcal" style="width:0"></i></p>
+  </div>
+  <div class="meter">
+    <p class="top"><span>Eiwit vandaag</span><b id="m-prot">–</b></p>
+    <p class="bar"><i id="b-prot" class="prot" style="width:0"></i></p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Werkelijk onderhoud</h2>
+  <div class="pair">
+    <div class="stat">
+      <p class="lab">Gemeten</p>
+      <p class="n" id="tdee-real">–<u>kcal</u></p>
+      <p id="tdee-sub">–</p>
+    </div>
+    <div class="stat dim">
+      <p class="lab">Formule</p>
+      <p class="n" id="tdee-calc">–<u>kcal</u></p>
+      <p>Mifflin-St Jeor × activiteitsfactor</p>
+    </div>
+  </div>
+  <p class="note" id="tdee-hint" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)">–</p>
+</section>
+
+<section class="card">
+  <h2>Eigen logboek <em>laatste 21 dagen</em></h2>
+  <table>
+    <thead><tr><th>Datum</th><th class="r">Kg</th><th class="r">Δ</th><th>Details</th></tr></thead>
+    <tbody id="log"></tbody>
+  </table>
+</section>
+
+<script src="./assets/config.js"></script>
+<script src="./assets/core.js"></script>
+<script src="./assets/charts.js"></script>
+<script src="./assets/person.js"></script>
+</body>
+</html>
