@@ -1,0 +1,27 @@
+{
+  "name": "Road naar 85 — Victor",
+  "short_name": "Victor 85",
+  "description": "Gewichtstracker voor de weddenschap Road naar 85.",
+  "lang": "nl",
+  "dir": "ltr",
+  "start_url": "./victor.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F7F9",
+  "theme_color": "#1F5C8B",
+  "icons": [
+    {
+      "src": "./assets/icon-victor-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-victor-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

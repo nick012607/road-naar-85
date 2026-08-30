@@ -1,0 +1,27 @@
+{
+  "name": "Road naar 85",
+  "short_name": "Road 85",
+  "description": "Vergelijking van de weddenschap Road naar 85.",
+  "lang": "nl",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F7F9",
+  "theme_color": "#0F1620",
+  "icons": [
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

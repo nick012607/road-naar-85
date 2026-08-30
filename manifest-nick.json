@@ -1,0 +1,27 @@
+{
+  "name": "Road naar 85 — Nick",
+  "short_name": "Nick 85",
+  "description": "Gewichtstracker voor de weddenschap Road naar 85.",
+  "lang": "nl",
+  "dir": "ltr",
+  "start_url": "./nick.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F7F9",
+  "theme_color": "#A72B37",
+  "icons": [
+    {
+      "src": "./assets/icon-nick-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/icon-nick-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

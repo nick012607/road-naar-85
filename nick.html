@@ -8,25 +8,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="manifest" href="./manifest-nick.json">
+  <meta name="theme-color" content="#A72B37">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Nick 85">
+  <link rel="apple-touch-icon" href="./assets/icon-nick-512.png">
+  <link rel="icon" href="./assets/icon-nick-512.png">
 </head>
 <body data-person="nick">
-
 <div id="nav-slot"></div>
-
 <header class="masthead">
   <h1><span id="who">–</span> <span>— eigen pagina</span></h1>
   <div class="meta">
     <div><span class="lab">Opdracht</span><b id="direction">–</b></div>
   </div>
 </header>
-
 <div class="banner" id="banner" hidden>
   Nog niet aan Supabase gekoppeld. Vul <span class="mono">assets/config.js</span> in, anders verdwijnt je invoer bij het verversen van de pagina.
 </div>
-
 <section class="card">
   <h2>Invoer <em>alleen het gewicht is verplicht</em></h2>
-
   <div class="fields">
     <div>
       <label for="date">Datum</label>
@@ -38,10 +41,8 @@
              inputmode="decimal" placeholder="93,5" required>
     </div>
   </div>
-
   <details>
     <summary>Optioneel invullen</summary>
-
     <div class="fields">
       <div>
         <label for="kcal">Calorieën</label>
@@ -52,12 +53,10 @@
         <input type="number" id="protein" step="1" min="0" max="500" inputmode="numeric" placeholder="180">
       </div>
     </div>
-
     <div>
       <label>Training vandaag</label>
       <div class="chips" id="chips"></div>
     </div>
-
     <div class="fields">
       <div>
         <label for="sleep">Slaap (uren)</label>
@@ -65,17 +64,14 @@
       </div>
       <div></div>
     </div>
-
     <div>
       <label for="note">Notitie</label>
       <textarea id="note" placeholder="Zwaar getild, slecht geslapen, uit eten geweest…"></textarea>
     </div>
   </details>
-
   <button class="submit" id="save">Dag opslaan</button>
   <p class="msg" id="status"></p>
 </section>
-
 <section class="card">
   <h2>Stand <em>7-daags gemiddelde</em></h2>
   <div class="pair">
@@ -107,7 +103,6 @@
     een kilo tussen twee dagen is water en darminhoud, geen vet. Alleen het gemiddelde telt.
   </p>
 </section>
-
 <section class="card">
   <h2>Verloop <em>eigen trend en projectie</em></h2>
   <svg id="chart" class="chart" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet"
@@ -118,7 +113,6 @@
     <span style="color:var(--ink)"><i></i>Streefgewicht 85,0</span>
   </div>
 </section>
-
 <section class="card">
   <h2>Dagdoel</h2>
   <div class="pair">
@@ -133,7 +127,6 @@
       <p id="t-prot-sub">–</p>
     </div>
   </div>
-
   <div class="meter">
     <p class="top"><span>Energie vandaag</span><b id="m-kcal">–</b></p>
     <p class="bar"><i id="b-kcal" style="width:0"></i></p>
@@ -143,7 +136,6 @@
     <p class="bar"><i id="b-prot" class="prot" style="width:0"></i></p>
   </div>
 </section>
-
 <section class="card">
   <h2>Werkelijk onderhoud</h2>
   <div class="pair">
@@ -160,7 +152,6 @@
   </div>
   <p class="note" id="tdee-hint" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)">–</p>
 </section>
-
 <section class="card">
   <h2>Eigen logboek <em>laatste 21 dagen</em></h2>
   <table>
@@ -168,10 +159,10 @@
     <tbody id="log"></tbody>
   </table>
 </section>
-
 <script src="./assets/config.js"></script>
 <script src="./assets/core.js"></script>
 <script src="./assets/charts.js"></script>
 <script src="./assets/person.js"></script>
+  <script src="./assets/pwa.js"></script>
 </body>
 </html>
