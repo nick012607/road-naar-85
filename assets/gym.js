@@ -32,9 +32,16 @@
   /* Een PR leest als "120 × 9". Zonder gewicht is het lichaamsgewicht: "15 reps". */
   function prText(pr) {
     if (!pr || pr.reps == null) return '–';
-    if (pr.weight == null) return pr.reps + ' reps';
-    return wfmt(pr.weight) + ' × ' + pr.reps;
+    const sets = [pr.reps, pr.reps2, pr.reps3].filter(x => x != null).join(' · ');
+    if (pr.weight == null) return sets + ' reps';
+    return wfmt(pr.weight) + ' × ' + sets;
   }
+
+  /* Invoerveld voor één set. Set 1 is verplicht, 2 en 3 mogen leeg blijven. */
+  const repInput = (id, v, req) =>
+    '<input type="number" id="' + id + '" step="1" min="1" max="200" inputmode="numeric"'
+    + (req ? ' class="required" placeholder="10"' : ' placeholder="–"')
+    + ' value="' + (v == null ? '' : v) + '">';
 
   /* ---------- Supabase (PostgREST via fetch, net als core.js) ---------- */
   async function req(path, opts) {
@@ -58,7 +65,7 @@
   async function loadAll() {
     const [ex, pr] = await Promise.all([
       req('exercises?select=id,name,category,note,is_custom,sort_order&order=sort_order.asc,name.asc'),
-      req('exercise_prs?select=exercise_id,person,weight,reps,note')
+      req('exercise_prs?select=exercise_id,person,weight,reps,reps2,reps3,note')
     ]);
     exercises = ex || [];
     prs = pr || [];
@@ -100,11 +107,14 @@
       // "95,5" stilzwijgend. inputmode="decimal" geeft nog steeds het cijferklavier.
       + '<input type="text" id="f-w" inputmode="decimal" maxlength="7"'
       + ' placeholder="bv. 120" value="' + (pr.weight == null ? '' : wfmt(pr.weight)) + '"></div>'
-      + '<div><label for="f-r"><b>Herhalingen</b></label>'
-      + '<input type="number" id="f-r" class="required" step="1" min="1" max="200" inputmode="numeric"'
-      + ' placeholder="10" value="' + (pr.reps == null ? '' : pr.reps) + '"></div>'
+      + '<div><label for="f-r"><b>Set 1</b></label>' + repInput('f-r', pr.reps, true) + '</div>'
       + '</div>'
-      + '<p class="hint">Gewicht leeg laten bij pull ups en dips — dan telt alleen het aantal.</p>'
+      + '<div class="fields">'
+      + '<div><label for="f-r2">Set 2</label>' + repInput('f-r2', pr.reps2) + '</div>'
+      + '<div><label for="f-r3">Set 3</label>' + repInput('f-r3', pr.reps3) + '</div>'
+      + '</div>'
+      + '<p class="hint">Set 2 en 3 mag je leeg laten. Gewicht leeg laten bij pull ups en dips —'
+      + ' dan telt alleen het aantal.</p>'
       + '<div><label for="f-n">Notitie</label>'
       + '<input type="text" id="f-n" placeholder="optioneel" value="' + esc(pr.note || '') + '"></div>'
       + '<div class="row-btns">'
@@ -184,10 +194,20 @@
     const p = open.person;
     const weight = val('f-w');
     const reps = val('f-r');
+    const reps2 = val('f-r2');
+    const reps3 = val('f-r3');
     const note = $('f-n').value.trim() || null;
 
     if (reps === null || !Number.isFinite(reps) || reps < 1) {
-      return APP.say('f-msg', 'Vul een aantal herhalingen in van minimaal 1.', 'err');
+      return APP.say('f-msg', 'Vul bij set 1 een aantal herhalingen in van minimaal 1.', 'err');
+    }
+    for (const [label, v] of [['set 2', reps2], ['set 3', reps3]]) {
+      if (v !== null && (!Number.isFinite(v) || v < 1)) {
+        return APP.say('f-msg', 'Laat ' + label + ' leeg of vul minimaal 1 herhaling in.', 'err');
+      }
+    }
+    if (reps3 !== null && reps2 === null) {
+      return APP.say('f-msg', 'Vul eerst set 2 in voordat je set 3 invult.', 'err');
     }
     if (weight !== null && (!Number.isFinite(weight) || weight < 0)) {
       return APP.say('f-msg', 'Gewicht mag niet negatief zijn.', 'err');
@@ -198,6 +218,8 @@
       person: p,
       weight: weight === null ? null : Math.round(weight * 10) / 10,
       reps: Math.round(reps),
+      reps2: reps2 === null ? null : Math.round(reps2),
+      reps3: reps3 === null ? null : Math.round(reps3),
       note: note
     };
 
