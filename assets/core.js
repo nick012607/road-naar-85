@@ -208,11 +208,12 @@ const APP = (() => {
       + '<a href="./index.html"' + (current === 'index' ? ' aria-current="page"' : '') + '>Vergelijking</a>'
       + '<a href="./nick.html"' + (current === 'nick' ? ' aria-current="page"' : '') + '>Nick</a>'
       + '<a href="./victor.html"' + (current === 'victor' ? ' aria-current="page"' : '') + '>Victor</a>'
+      + '<a href="./gym.html"' + (current === 'gym' ? ' aria-current="page"' : '') + '>Gym</a>'
       + '</nav>';
   }
 
   return {
-    $, iso, today, days, fmt, int, dutch, say, nav,
+    $, iso, today, days, fmt, int, dutch, say, nav, headers,
     all, forPerson, onDate, smoothed, trend, distance, etaDate,
     tdeeFormula, tdeeMeasured, goals,
     load, save, live
