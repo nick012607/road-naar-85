@@ -56,7 +56,9 @@ create table if not exists exercise_prs (
   exercise_id  uuid not null references exercises(id) on delete cascade,
   person       text not null check (person in ('nick','victor')),
   weight       numeric(6,1),
-  reps         int not null,
+  reps         int not null,          -- set 1
+  reps2        int,                   -- set 2, optioneel
+  reps3        int,                   -- set 3, optioneel
   note         text,
   updated_at   timestamptz not null default now(),
   unique (exercise_id, person)

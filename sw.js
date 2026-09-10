@@ -1,4 +1,4 @@
-const CACHE = 'road-naar-85-v3';
+const CACHE = 'road-naar-85-v4';
 
 const APP_SHELL = [
   './',
