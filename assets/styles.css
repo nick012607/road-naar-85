@@ -180,7 +180,73 @@ pre{background:var(--paper);border:1px solid var(--rule);border-radius:4px;
   padding:11px 13px;margin-bottom:14px;font-size:12.5px;color:#7A4A18;
 }
 
+/* ---------- keuzelijst ---------- */
+select{
+  width:100%;background:var(--card);border:1px solid var(--rule-strong);border-radius:4px;
+  color:var(--ink);font-family:"Instrument Sans",sans-serif;font-size:16px;padding:9px 10px;
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--faint) 50%),
+                   linear-gradient(135deg,var(--faint) 50%,transparent 50%);
+  background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+}
+select:focus{border-color:var(--ink);outline:none}
+
+/* ---------- krachttraining ---------- */
+.glist{margin-top:16px}
+.gcat{margin-bottom:22px}
+.gcat:last-child{margin-bottom:0}
+.gcat-h{padding-bottom:7px;border-bottom:1px solid var(--rule);margin-bottom:4px}
+
+.ex{padding:12px 0;border-bottom:1px solid var(--rule)}
+.gcat .ex:last-child{border-bottom:0;padding-bottom:0}
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ex-name{font-size:14px;font-weight:500;line-height:1.35}
+.ex-note{font-weight:400;font-size:11.5px;color:var(--faint)}
+.ex-edit{
+  flex:none;border:0;background:none;cursor:pointer;padding:2px 0;
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--faint);
+}
+.ex-edit:hover{color:var(--ink)}
+
+.ex-prs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.pr{
+  display:flex;flex-direction:column;gap:2px;text-align:left;cursor:pointer;
+  border:1px solid var(--rule);border-radius:4px;background:var(--card);
+  padding:8px 11px;min-height:52px;transition:.15s;
+}
+.pr:hover{border-color:var(--c);background:var(--t)}
+.pr b{font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:16px;
+      letter-spacing:-.02em;color:var(--c)}
+.pr .lab{color:var(--c);opacity:.7}
+.pr-note{font-size:11px;color:var(--muted);line-height:1.3}
+.pr.nick{--c:var(--nick);--t:var(--nick-tint)}
+.pr.victor{--c:var(--victor);--t:var(--victor-tint)}
+
+.ex-form{background:var(--paper);border:1px solid var(--rule);border-radius:4px;
+         padding:13px;margin-top:10px}
+.ex-form > *:not(:first-child){margin-top:11px}
+.ex-form input,.ex-form select{background:var(--card)}
+.ex-form-h{font-size:12px;font-weight:600}
+.hint{font-size:11.5px;color:var(--muted);line-height:1.45}
+.row-btns{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.row-btns .submit{margin-top:0}
+.ghost{
+  border:1px solid var(--rule-strong);background:var(--card);border-radius:4px;
+  font-family:"Instrument Sans",sans-serif;font-size:14px;color:var(--muted);
+  padding:11px 16px;cursor:pointer;
+}
+.ghost:hover{border-color:var(--rule-strong);color:var(--ink)}
+.danger-link{
+  border:0;background:none;padding:0;cursor:pointer;
+  font-family:"Instrument Sans",sans-serif;font-size:12px;color:var(--warn);
+  text-decoration:underline;text-underline-offset:2px;
+}
+
 @media (max-width:440px){
+  .ex-prs{grid-template-columns:1fr 1fr}
+  nav a{font-size:12px;padding:9px 2px}
   .standing{grid-template-columns:1fr}
   .divider{height:1px;width:100%;margin:16px 0}
   .athlete{padding:0}
