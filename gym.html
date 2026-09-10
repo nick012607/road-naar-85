@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krachttraining — Road naar 85</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/styles.css">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0F1620">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Gym 85">
+<link rel="apple-touch-icon" href="./assets/icon-512.png">
+<link rel="icon" href="./assets/icon-512.png">
+</head>
+<body>
+<div id="nav-slot"></div>
+<header class="masthead">
+  <h1>Krachttraining <span>— persoonlijke records</span></h1>
+  <div class="meta">
+    <div><span class="lab">Stand</span><b id="count">–</b></div>
+  </div>
+</header>
+<div class="banner" id="banner" hidden>
+  Nog niet aan Supabase gekoppeld. Vul <span class="mono">assets/config.js</span> in.
+</div>
+
+<section class="card">
+  <h2>Oefeningen <em>tik op een naam om een PR bij te werken</em></h2>
+  <div class="chips" id="chips"></div>
+  <div id="list" class="glist"></div>
+  <p class="msg" id="status"></p>
+  <p class="note" style="margin-top:16px;padding-top:14px;border-top:1px solid var(--rule)">
+    Er wordt alleen je huidige record bewaard, geen historie — een nieuwe PR overschrijft de oude.
+    Bij machines vul je gewoon het nummer van de stack in, bij losse gewichten de kilo's.
+  </p>
+</section>
+
+<section class="card">
+  <h2>Oefening toevoegen</h2>
+  <div>
+    <label for="a-name"><b>Naam</b></label>
+    <input type="text" id="a-name" class="required" placeholder="Cable crossover">
+  </div>
+  <div class="fields" style="margin-top:10px">
+    <div>
+      <label for="a-cat">Categorie</label>
+      <select id="a-cat"></select>
+    </div>
+    <div>
+      <label for="a-note">Notitie</label>
+      <input type="text" id="a-note" placeholder="bv. per kant">
+    </div>
+  </div>
+  <button class="submit" id="a-add">Toevoegen</button>
+  <p class="msg" id="a-msg"></p>
+</section>
+
+<script src="./assets/config.js"></script>
+<script src="./assets/core.js"></script>
+<script src="./assets/gym.js"></script>
+<script src="./assets/pwa.js"></script>
+</body>
+</html>
