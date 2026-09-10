@@ -1,10 +1,11 @@
-const CACHE = 'road-naar-85-v2';
+const CACHE = 'road-naar-85-v3';
 
 const APP_SHELL = [
   './',
   './index.html',
   './nick.html',
   './victor.html',
+  './gym.html',
   './manifest.json',
   './manifest-nick.json',
   './manifest-victor.json',
@@ -14,6 +15,7 @@ const APP_SHELL = [
   './assets/charts.js',
   './assets/compare.js',
   './assets/person.js',
+  './assets/gym.js',
   './assets/pwa.js',
   './assets/icon-512.png',
   './assets/icon-nick-512.png',
