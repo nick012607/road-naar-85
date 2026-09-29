@@ -1,4 +1,4 @@
-const CACHE = 'road-naar-85-v4';
+const CACHE = 'road-naar-85-v5';
 
 const APP_SHELL = [
   './',
@@ -14,6 +14,7 @@ const APP_SHELL = [
   './assets/core.js',
   './assets/charts.js',
   './assets/compare.js',
+  './assets/weekly.js',
   './assets/person.js',
   './assets/gym.js',
   './assets/pwa.js',

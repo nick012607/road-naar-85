@@ -99,6 +99,7 @@
 
   async function init() {
     $('nav-slot').outerHTML = APP.nav('index');
+    $('share').addEventListener('click', () => WEEKLY.share('share-msg'));
     renderAll();
     const res = await APP.load();
     if (res.ok) renderAll();

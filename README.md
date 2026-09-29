@@ -88,6 +88,7 @@ assets/
   charts.js         SVG-grafieken, handgeschreven, geen library
   person.js         gedrag van de persoonlijke pagina's
   compare.js        gedrag van de vergelijkingspagina
+  weekly.js         weekupdate om te delen vanaf de vergelijkingspagina
   styles.css        gedeeld stijlblad
 ```
 
